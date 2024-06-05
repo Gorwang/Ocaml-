@@ -1,0 +1,29 @@
+1-
+let rec hanoi dep aux dest n =
+  if n > 0 then begin
+    hanoi dep dest aux (n-1);
+    print_endline (dep ^ " -> " ^ dest);
+    hanoi aux dep dest (n-1);
+  end
+
+let () =
+  let start_time = Sys.time () in
+  hanoi "A" "B" "C" 5;
+  let end_time = Sys.time () in
+  Printf.printf "Time taken: %f seconds\n" (end_time -. start_time);;
+
+2-
+let hanoi n =
+  let rec hanoi_aux dep aux dest n =
+    if n > 0 then begin
+      hanoi_aux dep dest aux (n-1);
+      print_endline (dep ^ " -> " ^ dest);
+      hanoi_aux aux dep dest (n-1);
+    end
+  in  
+  let start_time = Sys.time () in
+  hanoi_aux "A" "B" "C" n;
+  let end_time = Sys.time () in
+  Printf.printf "Time taken: %f seconds\n" (end_time -. start_time)
+
+let () = hanoi 5;;
